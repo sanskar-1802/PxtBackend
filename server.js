@@ -5,6 +5,7 @@ const cron = require('node-cron');
 const connectDB = require('./config/db');
 const logger = require('./utils/logger');
 const recurringJob = require('./utils/recurringJob');
+const cors = require("cors");
 
 const authRoutes = require('./routes/auth');
 const expenseRoutes = require('./routes/expenses');
@@ -16,6 +17,12 @@ const goalRoutes = require('./routes/goals');
 const { errorHandler } = require('./middleware/errorHandler');
 
 const app = express();
+
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true,
+}));
+
 app.use(express.json());
 app.use(morgan('dev'));
 

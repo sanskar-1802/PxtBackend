@@ -23,8 +23,8 @@
     "node-cache": "^5.1.2",
     "node-cron": "^3.0.2",
     "nodemailer": "^6.10.1",
-    "winston": "^3.9.0",
-    "type":"module"
+    "winston": "^3.9.0"
+  
   },
   "devDependencies": {
     "jest": "^29.6.1",

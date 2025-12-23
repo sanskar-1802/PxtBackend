@@ -8,5 +8,6 @@ router.use(protect);
 router.post('/', ctrl.addGoal);
 router.get('/', ctrl.getGoals);
 router.patch('/:id/progress', ctrl.updateGoalProgress);
+router.delete('/:id', ctrl.deleteGoal);
 
 module.exports = router;

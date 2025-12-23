@@ -78,3 +78,20 @@ exports.getBudgetStatus = async (req, res) => {
     res.status(500).json({ message: "Server error", error: err.message });
   }
 };
+// ✅ Delete Budget
+exports.deleteBudget = async (req, res) => {
+  try {
+    const deleted = await Budget.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id
+    });
+
+    if (!deleted)
+      return res.status(404).json({ message: "Budget not found" });
+
+    res.json({ message: "Budget deleted successfully" });
+  } catch (err) {
+    console.error("❌ Delete Budget Error:", err);
+    res.status(500).json({ message: "Server error", error: err.message });
+  }
+};

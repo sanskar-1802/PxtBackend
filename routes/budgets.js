@@ -8,5 +8,6 @@ router.use(protect);
 router.post('/', ctrl.addBudget);
 router.get('/', ctrl.getBudgets);
 router.get('/status', ctrl.getBudgetStatus);
+router.delete('/:id', ctrl.deleteBudget);
 
 module.exports = router;

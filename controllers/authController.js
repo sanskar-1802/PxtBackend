@@ -202,12 +202,16 @@ exports.requestPassword = async (req, res) => {
       subject: 'Password Reset Request',
       text: `You requested a password reset. Click the link below:\n${resetLink}`
     });
+    // console.log("Reset Password Link:", resetLink);
+
 
     res.json({ message: 'Password reset email sent successfully' });
-  } catch (err) {
+  }
+  catch (err) {
     console.error('Request Password Error:', err);
     res.status(500).json({ message: 'Failed to send password reset email' });
   }
+
 };
 
 // STEP 2: Reset password

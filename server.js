@@ -20,10 +20,13 @@ const app = express();
 
 app.use(cors({
   origin: ["http://localhost:5173",
-  "https://pxt-frontend.vercel.app/"
+  "https://pxt-frontend.vercel.app"
   ],
   credentials: true,
 }));
+
+app.options("*", cors());
+
 
 app.use(express.json());
 app.use(morgan('dev'));

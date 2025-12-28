@@ -347,3 +347,5 @@
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-12-23T19:21:15.644Z"}
 {"level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-24T10:55:30.967Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-12-24T10:55:30.976Z"}
+{"level":"info","message":"✅ MongoDB connected","timestamp":"2025-12-24T11:50:55.450Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-12-24T11:50:55.458Z"}

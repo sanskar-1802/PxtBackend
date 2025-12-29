@@ -1,35 +1,27 @@
-const nodemailer = require("nodemailer");
 const logger = require("./logger");
-
-
-console.log("SMTP CONFIG:", {
-  host: process.env.SMTP_HOST,
-  port: process.env.SMTP_PORT,
-  user: process.env.SMTP_USER ? "SET" : "MISSING"
-});
-
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,           // smtp-relay.brevo.com
-  port: Number(process.env.SMTP_PORT),   // 587
-  secure: false,                         // ❗ MUST be false for Brevo
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  }
-  // ❌ REMOVE TLS block completely
-});
 
 async function sendMail({ to, subject, text, html }) {
   try {
-    const info = await transporter.sendMail({
-      from: process.env.EMAIL_FROM || process.env.SMTP_USER,
-      to,
-      subject,
-      text,
-      html,
+    const res = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: process.env.EMAIL_FROM,
+        to,
+        subject,
+        html: html || `<p>${text}</p>`,
+      }),
     });
-    logger.info("Email sent: " + info.response);
-    return info;
+
+    const data = await res.json();
+
+    if (!res.ok) throw new Error(data.error?.message || "Email failed");
+
+    logger.info("Email sent:", data);
+    return data;
   } catch (err) {
     logger.error("Email error:", err);
     throw err;

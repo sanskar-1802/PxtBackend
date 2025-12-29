@@ -117,7 +117,7 @@ exports.requestPassword = async (req, res) => {
     user.resetPasswordExpires = resetTokenExpiry;
     await user.save({ validateBeforeSave: false });
 
-    const resetLink = `http://your-frontend/reset-password?token=${resetToken}&id=${user._id}`;
+    const resetLink = `https:/pxt-frontend.vercel.app/reset-password?token=${resetToken}&id=${user._id}`;
     await sendMail({
       to: user.email,
       subject: 'Password Reset Request',

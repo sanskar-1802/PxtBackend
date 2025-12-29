@@ -1,6 +1,13 @@
 const nodemailer = require("nodemailer");
 const logger = require("./logger");
 
+
+console.log("SMTP CONFIG:", {
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  user: process.env.SMTP_USER ? "SET" : "MISSING"
+});
+
 const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST,           // smtp-relay.brevo.com
   port: Number(process.env.SMTP_PORT),   // 587
